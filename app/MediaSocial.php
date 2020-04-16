@@ -21,7 +21,7 @@ class MediaSocial extends Model implements AuthenticatableContract, Authorizable
      * @var array
      */
     protected $fillable = [
-        'social_media', 'username'
+        'social_media', 'username', 'user_id'
     ];
 
     /**

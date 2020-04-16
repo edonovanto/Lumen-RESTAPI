@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use  App\MediaSocial;
+use App\User;
 
 class MediaSocialController extends Controller
 {
@@ -22,17 +23,19 @@ class MediaSocialController extends Controller
      *
      * @return Response
      */
-    public function addSocialMedia(Request $request)
+    public function addSocialMedia(Request $request, $id)
     {
+        $result = User::find($id);
         //validate incoming request 
         $this->validate($request, [
-            'media_social' => 'required|string',
+            'social_media' => 'required|string',
             'username' => 'required|string',
         ]);
 
         try {
             $media = new MediaSocial;
-            $media->media_social = $request->input('media_social');
+            $media->user_id = $result->id;
+            $media->social_media = $request->input('social_media');
             $media->username = $request->input('username');
 
             $media->save();
@@ -42,7 +45,7 @@ class MediaSocialController extends Controller
 
         } catch (\Exception $e) {
             //return error message
-            return response()->json(['message' => 'Social Media Registration Failed!'], 409);
+            return response()->json(['message' => $e], 409);
         }
 
     }
