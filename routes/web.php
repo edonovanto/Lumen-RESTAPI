@@ -39,4 +39,13 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     //create social media 
     $router->post('socialmedia/{id}', 'MediaSocialController@addSocialMedia');
+
+    //see all social media 
+    $router->get('socialmedia/', 'MediaSocialController@allSocialMedia');
+
+    //update social media
+    $router->put('socialmedia/update/{user_id}', 'MediaSocialController@update');
+
+    //delete
+    $router->delete('socialmedia/delete/{user_id}', 'MediaSocialController@destroy');
 });

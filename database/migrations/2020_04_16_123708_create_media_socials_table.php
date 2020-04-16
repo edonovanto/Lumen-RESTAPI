@@ -14,16 +14,11 @@ class CreateMediaSocialsTable extends Migration
     public function up()
     {
         Schema::create('media_socials', function (Blueprint $table) {
-            $table->bigIncrements('id')->primary();
+            $table->bigIncrements('id');
             $table->integer('user_id');
             $table->string('social_media');
             $table->string('username');
             $table->timestamps();
-        });
-
-        Schema::create('media_socials', function (Blueprint $table) {
-            $table->foreign('user_id')
-                  ->references('id')->on('users');
         });
     }
 

@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use  App\MediaSocial;
 use App\User;
+use Symfony\Component\HttpFoundation\Response;
 
 class MediaSocialController extends Controller
 {
@@ -71,8 +72,8 @@ class MediaSocialController extends Controller
         return response()->json($data);
     }
 
-    public function update(Request $request, $id){
-        $result = MediaSocial::find($id);
+    public function update(Request $request, $user_id){
+        $result = MediaSocial::find($user_id);
         $result->fill($request->all());
         $result->save();
 
@@ -86,6 +87,13 @@ class MediaSocialController extends Controller
         }
         
         return response($data);
+    }
+
+    public function destroy($id){
+        $media = MediaSocial::find($id);
+        $media->delete();
+
+        return response()->json('removed successfully!');
     }
 
 }
