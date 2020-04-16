@@ -38,5 +38,5 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->put('update/{id}', 'UserController@update');
 
     //create social media 
-    $router->post('socialmedia', 'MediaSocialController@addSocialMedia');
+    $router->post('socialmedia/{id}', 'MediaSocialController@addSocialMedia');
 });
